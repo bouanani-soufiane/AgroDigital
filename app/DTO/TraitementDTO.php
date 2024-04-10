@@ -2,20 +2,19 @@
 
 namespace App\DTO;
 
-use App\Http\Requests\StoreTaskRequest;
+use App\Http\Requests\StoreTraitementRequest;
 
-readonly class TaskDTO
+readonly class TraitementDTO
 {
     public function __construct(public string $name)
     {
     }
 
-    public static function fromRequest(StoreTaskRequest $request)
+    public static function fromRequest(StoreTraitementRequest $request)
     {
         $validatedData = $request->validated();
         return new self(
             name: $validatedData["name"],
-
         );
     }
 }

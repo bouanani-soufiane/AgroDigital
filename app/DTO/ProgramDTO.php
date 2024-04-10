@@ -1,7 +1,6 @@
 <?php
 
-use App\Http\Requests\StoreAnswerRequest;
-use Tymon\JWTAuth\Facades\JWTAuth;
+use App\Http\Requests\StoreProgramRequest;
 
 readonly class ProgramDTO
 {
@@ -12,7 +11,7 @@ readonly class ProgramDTO
     {
     }
 
-    public static function fromRequest(Request $request)
+    public static function fromRequest(StoreProgramRequest $request)
     {
         $validatedData = $request->validated();
         return new self (

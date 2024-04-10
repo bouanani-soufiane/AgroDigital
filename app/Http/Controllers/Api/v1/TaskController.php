@@ -7,6 +7,7 @@ use App\Models\Task;
 use App\Http\Requests\StoreTaskRequest;
 use App\Http\Requests\UpdateTaskRequest;
 use App\Services\contract\TaskServiceInterface;
+use App\Http\Controllers\Api\v1\BaseApiController;
 
 class TaskController extends BaseApiController
 {
