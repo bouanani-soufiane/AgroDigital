@@ -7,9 +7,7 @@ use App\Repositories\interface\DiseaseRepositoryInterface;
 use App\DTO\DiseaseDTO;
 use Illuminate\Database\Eloquent\Collection;
 
-/**
- * Class DiseaseRepository.
- */
+
 class DiseaseRepository  implements DiseaseRepositoryInterface
 {
     public function all()
@@ -59,6 +57,8 @@ class DiseaseRepository  implements DiseaseRepositoryInterface
     {
         return [
             "name" => $DTO->name,
+            "description" => $DTO->description,
+            "type" => $DTO->type,
         ];
     }
 }

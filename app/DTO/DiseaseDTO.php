@@ -8,6 +8,9 @@ readonly class DiseaseDTO
 {
     public function __construct(
         public string $name,
+        public string $description,
+        public string $type,
+
 
     ) {
     }
@@ -17,6 +20,8 @@ readonly class DiseaseDTO
         $validatedData = $request->validated();
         return new self(
             name: $validatedData["name"],
+            description: $validatedData["description"],
+            type: $validatedData["type"],
 
         );
     }

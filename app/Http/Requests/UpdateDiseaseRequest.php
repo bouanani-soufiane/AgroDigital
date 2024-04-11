@@ -11,6 +11,8 @@ class UpdateDiseaseRequest extends FormRequest
     {
         return [
             'name' => 'required',
+            'description' => 'required',
+            'type' => 'required',
         ];
     }
 }

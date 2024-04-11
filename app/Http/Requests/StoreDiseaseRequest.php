@@ -9,7 +9,9 @@ class StoreDiseaseRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required'
+            'name' => 'required',
+            'description' => 'required',
+            'type' => 'required',
         ];
     }
 }

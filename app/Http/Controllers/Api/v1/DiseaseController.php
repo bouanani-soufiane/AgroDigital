@@ -18,7 +18,11 @@ class DiseaseController extends BaseApiController
     public function index()
     {
         $disease = $this->service->all();
-        return response()->json($disease, 200);
+        return $this->sendResponse(
+            message: "disease retrieved successfully !",
+            result: $disease,
+            code: 200
+        );
     }
 
     public function store(StoreDiseaseRequest $request)

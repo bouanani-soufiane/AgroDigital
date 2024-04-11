@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 
 class BaseApiController extends Controller
 {
-    protected function respondWithToken($token, $name = null , $role = null)
+    protected function respondWithToken($token, $name = null, $role = null)
     {
         return response()->json([
             'name' => $name,
@@ -16,15 +16,25 @@ class BaseApiController extends Controller
             'expires_in' => auth()->factory()->getTTL() * 60
         ]);
     }
-    public function sendResponse($result, $message)
+
+    protected function sendResponse($message, $result = null, $code = 200)
     {
         $response = [
             'success' => true,
-            'data'    => $result,
             'message' => $message,
         ];
-        return response()->json($response, 200);
+        if (!is_null($result)) {
+            $response += ["data" => $result];
+        }
+        return response()->json($response, $code);
     }
+
+
+
+
+
+
+
     public function sendError($error, $errorMessages = [], $code = 404)
     {
         $response = [
@@ -32,7 +42,7 @@ class BaseApiController extends Controller
             'message' => $error,
         ];
 
-        if(!empty($errorMessages)){
+        if (!empty($errorMessages)) {
             $response['data'] = $errorMessages;
         }
 
