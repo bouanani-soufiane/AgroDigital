@@ -5,6 +5,8 @@ namespace App\Repositories\implementation;
 use App\Models\Report;
 use App\Repositories\interface\ReportRepositoryInterface;
 use App\DTO\ReportDTO;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Validation\UnauthorizedException;
 
 class ReportRepository  implements ReportRepositoryInterface
 {

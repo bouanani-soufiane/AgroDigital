@@ -10,6 +10,8 @@ class UpdateTraitementRequest extends FormRequest
     {
         return [
             "name" => "required|string",
+            "dateStart" => "required|string",
+            "dateEnd" => "required|string",
         ];
     }
 }

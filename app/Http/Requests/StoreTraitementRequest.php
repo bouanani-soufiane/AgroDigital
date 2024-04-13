@@ -10,6 +10,9 @@ class StoreTraitementRequest extends FormRequest
     {
         return [
             "name" => "required|string",
+            "dateStart" => "required|string",
+            "dateEnd" => "required|string",
+            "product_id" => "required",
         ];
     }
 }

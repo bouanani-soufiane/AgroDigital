@@ -5,8 +5,8 @@ namespace App\Repositories\implementation;
 use App\Models\Disease;
 use App\Repositories\interface\DiseaseRepositoryInterface;
 use App\DTO\DiseaseDTO;
-use Illuminate\Database\Eloquent\Collection;
-
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Validation\UnauthorizedException;
 
 class DiseaseRepository  implements DiseaseRepositoryInterface
 {

@@ -6,6 +6,8 @@ use App\Models\Task;
 use App\Repositories\interface\TaskRepositoryInterface;
 use App\DTO\TaskDTO;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Validation\UnauthorizedException;
 
 class TaskRepository implements TaskRepositoryInterface
 {

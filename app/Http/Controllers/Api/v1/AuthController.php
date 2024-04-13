@@ -24,25 +24,25 @@ class AuthController extends BaseApiController
 
         return $this->respondWithToken($token, $name, $role);
     }
-    #[Route('api/v1/register')]
-    public function register(RegisterEmployeeRequest $request)
-    {
-        try {
-            $validatedData = $request->validated();
-            $validatedData['password'] = bcrypt($validatedData['password']);
-            $user = User::create($validatedData);
-            $response = [
-                'user' => $user
-            ];
-            return $this->sendResponse($response, 'User registered successfully.');
-        } catch (\Exception $e) {
+    // #[Route('api/v1/register')]
+    // public function register(RegisterEmployeeRequest $request)
+    // {
+    //     try {
+    //         $validatedData = $request->validated();
+    //         $validatedData['password'] = bcrypt($validatedData['password']);
+    //         $user = User::create($validatedData);
+    //         $response = [
+    //             'user' => $user
+    //         ];
+    //         return $this->sendResponse($response, 'User registered successfully.');
+    //     } catch (\Exception $e) {
 
-            return $this->sendError('Registration failed.', [$e->getMessage()]);
-        }
-    }
+    //         return $this->sendError('Registration failed.', [$e->getMessage()]);
+    //     }
+    // }
     public function logout()
     {
-        auth()->logout();
+        JWTAuth::invalidate(JWTAuth::getToken());
 
         return response()->json(['message' => 'Successfully logged out']);
     }

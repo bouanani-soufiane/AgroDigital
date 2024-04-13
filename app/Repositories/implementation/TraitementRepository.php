@@ -6,6 +6,8 @@ use App\Models\Traitement;
 use App\Repositories\interface\TraitementRepositoryInterface;
 use App\DTO\TraitementDTO;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Validation\UnauthorizedException;
 
 class TraitementRepository implements TraitementRepositoryInterface
 {
@@ -57,6 +59,10 @@ class TraitementRepository implements TraitementRepositoryInterface
     {
         return [
             "name" => $DTO->name,
+            "dateStart" => $DTO->dateStart,
+            "dateEnd" => $DTO->dateEnd,
+            "product_id" => $DTO->product_id,
+            "employee_id" => $DTO->employee_id
         ];
     }
 }

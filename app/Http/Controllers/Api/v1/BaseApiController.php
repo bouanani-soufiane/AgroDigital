@@ -29,12 +29,6 @@ class BaseApiController extends Controller
         return response()->json($response, $code);
     }
 
-
-
-
-
-
-
     public function sendError($error, $errorMessages = [], $code = 404)
     {
         $response = [
