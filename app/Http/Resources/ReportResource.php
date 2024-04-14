@@ -7,13 +7,17 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class ReportResource extends JsonResource
 {
-    /**
-     * Transform the resource into an array.
-     *
-     * @return array<string, mixed>
-     */
     public function toArray(Request $request): array
     {
-        return parent::toArray($request);
+        return [
+            "id" => $this->id,
+            'subject' => $this->subject,
+            'content' => $this->content,
+            'disease' => new DiseaseResource($this->disease),
+            'product' => new ProductResource($this->product),
+            'task' => new TaskResource($this->task),
+
+
+        ];
     }
 }

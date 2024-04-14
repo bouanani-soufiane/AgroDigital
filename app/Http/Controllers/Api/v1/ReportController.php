@@ -16,8 +16,8 @@ class ReportController extends BaseApiController
     }
     public function index()
     {
-        $report = $this->service->all();
-        return response()->json($report, 200);
+        $reports = $this->service->all();
+        return response()->json($reports, 200);
     }
 
 
@@ -30,6 +30,8 @@ class ReportController extends BaseApiController
 
     public function show(Report $report)
     {
+        $report->load('products');
+
         return response()->json($report, 200);
     }
 

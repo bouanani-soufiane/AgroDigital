@@ -12,13 +12,15 @@ class ReportRepository  implements ReportRepositoryInterface
 {
     public function all()
     {
-        return Report::all();
+
+        return Report::with('products')->get();
     }
 
     public function store(ReportDTO $DTO)
     {
         try {
             $report = Report::create($this->getArr($DTO));
+            $report->products()->attach($DTO->product_id);
             return $report;
         } catch (\Exception $e) {
             throw new \RuntimeException("Error creating Report: " . $e->getMessage());
@@ -56,7 +58,10 @@ class ReportRepository  implements ReportRepositoryInterface
     private function getArr(ReportDTO $DTO): array
     {
         return [
-            "name" => $DTO->name,
+            "subject" => $DTO->subject,
+            "content" => $DTO->content,
+            "disease_id" => $DTO->disease_id,
+            "task_id" => $DTO->task_id,
         ];
     }
 }

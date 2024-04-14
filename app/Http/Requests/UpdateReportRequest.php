@@ -9,7 +9,11 @@ class UpdateReportRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required',
+            'subject' => 'required',
+            'content' => 'required',
+            'disease_id' => 'required',
+            'product_id' => 'required',
+            'task_id' => 'required',
         ];
     }
 }

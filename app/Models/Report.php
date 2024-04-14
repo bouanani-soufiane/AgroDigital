@@ -9,6 +9,21 @@ class Report extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'name',
+        'subject',
+        'content',
+        'disease_id',
+        'task_id',
     ];
+    protected $with = ['products'];
+    public function task(){
+        return $this->belongsTo(Task::class);
+    }
+    public function disease()
+    {
+        return $this->belongsTo(Disease::class);
+    }
+    public function products()
+    {
+        return $this->belongsToMany(Product::class);
+    }
 }

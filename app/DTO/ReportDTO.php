@@ -3,19 +3,30 @@
 namespace App\DTO;
 
 use App\Http\Requests\StoreReportRequest;
+use App\Http\Requests\UpdateReportRequest;
 
 readonly class ReportDTO
 {
-    public function __construct(public string $name)
-    {
+    public function __construct(
+        public string $subject,
+        public string $content,
+        public int $disease_id,
+        public int $product_id,
+        public int $task_id,
+
+
+    ) {
     }
 
-    public static function fromRequest(StoreReportRequest $request)
+    public static function fromRequest(StoreReportRequest | UpdateReportRequest $request)
     {
         $validatedData = $request->validated();
         return new self(
-            name: $validatedData["name"],
-
+            subject: $validatedData["subject"],
+            content: $validatedData["content"],
+            disease_id: $validatedData["disease_id"],
+            product_id: $validatedData["product_id"],
+            task_id: $validatedData["task_id"],
         );
     }
 }
