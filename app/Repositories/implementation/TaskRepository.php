@@ -59,6 +59,13 @@ class TaskRepository implements TaskRepositoryInterface
     {
         return [
             "name" => $DTO->name,
+            'Description'  => $DTO->Description,
+            'DateStart'  => $DTO->DateStart,
+            'DateEnd'  => $DTO->DateEnd,
+            'Status'  => $DTO->Status,
+            'TypeTask'  => $DTO->TypeTask,
+            "employee_id" => $DTO->employee_id,
+
         ];
     }
 }

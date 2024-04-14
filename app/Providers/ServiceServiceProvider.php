@@ -10,10 +10,12 @@ use App\Services\contract\TaskServiceInterface;
 use App\Services\contract\UserServiceInterface;
 use App\Services\Implementation\DiseaseService;
 use App\Services\Implementation\ProductService;
+use App\Services\Implementation\MaterialService;
 use App\Services\contract\ReportServiceInterface;
 use App\Services\contract\DiseaseServiceInterface;
 use App\Services\contract\ProductServiceInterface;
 use App\Services\Implementation\TraitementService;
+use App\Services\contract\MaterialServiceInterface;
 use App\Services\contract\TraitementServiceInterface;
 
 class ServiceServiceProvider extends ServiceProvider
@@ -37,6 +39,7 @@ class ServiceServiceProvider extends ServiceProvider
         app()->bind(TraitementServiceInterface::class, TraitementService::class);
         app()->bind(ProductServiceInterface::class, ProductService::class);
         app()->bind(UserServiceInterface::class, UserService::class);
+        app()->bind(MaterialServiceInterface::class, MaterialService::class);
 
 
     }

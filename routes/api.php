@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\v1\ReportController;
 use App\Http\Controllers\Api\v1\DiseaseController;
 use App\Http\Controllers\Api\v1\TraitementController;
 use App\Http\Controllers\Api\v1\Employee\UserController;
+use App\Http\Controllers\Api\v1\MaterialController;
 use App\Http\Controllers\Api\v1\ProductController;
 
 Route::prefix('v1')->group(function () {
@@ -25,4 +26,6 @@ Route::group(['prefix' => 'v1'], function () {
     Route::apiResource('traitements', TraitementController::class);
     Route::apiResource('products', ProductController::class);
     Route::apiResource('users', UserController::class);
+    Route::apiResource('materials', MaterialController::class);
+
 });

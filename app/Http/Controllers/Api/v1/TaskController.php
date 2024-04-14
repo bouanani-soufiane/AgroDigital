@@ -17,8 +17,10 @@ class TaskController extends BaseApiController
 
     public function index()
     {
-        $tasks = $this->service->all();
-        return response()->json($tasks, 200);
+        return $this->sendResponse(
+            message: "tasks list",
+            result: $this->service->all()
+        );
     }
 
 
@@ -26,12 +28,20 @@ class TaskController extends BaseApiController
     {
         $DTO = TaskDTO::fromRequest($request);
         $task = $this->service->store($DTO);
-        return response()->json($task, 201);
+        return $this->sendResponse(
+            message: "Task created successfully",
+            result: $task,
+            code: 201
+        );
     }
 
     public function show(Task $task)
     {
-        return response()->json($task, 200);
+        return $this->sendResponse(
+            message: "task retrieved successfully",
+            result: $this->service->show($task),
+            code: 201
+        );
     }
 
 
@@ -39,13 +49,16 @@ class TaskController extends BaseApiController
     {
         $DTO = TaskDTO::fromRequest($request);
         $task = $this->service->update($task, $DTO);
-        return response()->json($task, 200);
+        return $this->sendResponse(
+            message: "task updated successfully",
+            code: 201
+        );
     }
 
     public function destroy(Task $task)
     {
         $this->service->delete($task);
 
-        return response()->json(['message' => 'Task deleted successfully'], 200);
+        return $this->sendResponse(message: "Task deleted", result: true);
     }
 }
