@@ -4,6 +4,7 @@ namespace App\DTO;
 
 use Tymon\JWTAuth\Facades\JWTAuth;
 use App\Http\Requests\StoreTaskRequest;
+use App\Http\Requests\UpdateTaskRequest;
 
 readonly class TaskDTO
 {
@@ -19,7 +20,7 @@ readonly class TaskDTO
     ) {
     }
 
-    public static function fromRequest(StoreTaskRequest $request)
+    public static function fromRequest(StoreTaskRequest | UpdateTaskRequest $request)
     {
         $validatedData = $request->validated();
 

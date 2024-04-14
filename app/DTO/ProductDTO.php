@@ -3,6 +3,7 @@
 namespace App\DTO;
 
 use App\Http\Requests\StoreProductRequest;
+use App\Http\Requests\UpdateProductRequest;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
 readonly class ProductDTO
@@ -17,7 +18,7 @@ readonly class ProductDTO
     ) {
     }
 
-    public static function fromRequest(StoreProductRequest $request)
+    public static function fromRequest(StoreProductRequest | UpdateProductRequest $request)
     {
         $user = JWTAuth::user();
 

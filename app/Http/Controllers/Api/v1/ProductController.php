@@ -17,8 +17,10 @@ class ProductController extends BaseApiController
 
     public function index()
     {
-        $products = $this->service->all();
-        return response()->json($products, 200);
+        return $this->sendResponse(
+            message: "products list",
+            result: $this->service->all()
+        );
     }
 
 
@@ -26,12 +28,20 @@ class ProductController extends BaseApiController
     {
         $DTO = ProductDTO::fromRequest($request);
         $product = $this->service->store($DTO);
-        return response()->json($product, 201);
+        return $this->sendResponse(
+            message: "product created successfully",
+            result: $product,
+            code: 200
+        );
     }
 
     public function show(Product $product)
     {
-        return response()->json($product, 200);
+        return $this->sendResponse(
+            message: "product retrieved successfully",
+            result: $this->service->show($product),
+            code: 200
+        );
     }
 
 
@@ -39,13 +49,16 @@ class ProductController extends BaseApiController
     {
         $DTO = ProductDTO::fromRequest($request);
         $product = $this->service->update($product, $DTO);
-        return response()->json($product, 200);
+        return $this->sendResponse(
+            message: "product updated successfully",
+            code: 200
+        );
     }
 
     public function destroy(Product $product)
     {
         $this->service->delete($product);
 
-        return response()->json(['message' => 'Product deleted successfully'], 200);
+        return $this->sendResponse(message: "product deleted", result: true, code: 204);
     }
 }

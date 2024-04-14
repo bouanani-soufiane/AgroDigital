@@ -29,12 +29,20 @@ class DiseaseController extends BaseApiController
     {
         $DTO = DiseaseDTO::fromRequest($request);
         $disease = $this->service->store($DTO);
-        return response()->json($disease, 201);
+        return $this->sendResponse(
+            message: "disease created successfully",
+            result: $disease,
+            code: 201
+        );
     }
 
     public function show(Disease $disease)
     {
-        return response()->json($disease, 200);
+        return $this->sendResponse(
+            message: "disease retrieved successfully",
+            result: $this->service->show($disease),
+            code: 201
+        );
     }
 
 
@@ -43,13 +51,16 @@ class DiseaseController extends BaseApiController
     {
         $DTO = DiseaseDTO::fromRequest($request);
         $disease = $this->service->update($disease, $DTO);
-        return response()->json($disease, 200);
+        return $this->sendResponse(
+            message: "disease updated successfully",
+            code: 201
+        );
     }
 
     public function destroy(Disease $disease)
     {
         $this->service->delete($disease);
 
-        return response()->json(['message' => 'disease deleted successfully'], 200);
+        return $this->sendResponse(message: "disease deleted", result: true);
     }
 }

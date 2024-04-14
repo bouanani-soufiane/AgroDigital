@@ -57,14 +57,11 @@ class MaterialRepository  implements MaterialRepositoryInterface
     {
         return [
             "name" => $DTO->name,
-            'quantity', $DTO->quantity,
-            'type', $DTO->type,
-            'manufacturer', $DTO->manufacturer,
-            'purchase_date', $DTO->purchase_date,
-            'employee_id', $DTO->employee_id,
+            'quantity' => $DTO->quantity,
+            'type' => $DTO->type,
+            'manufacturer' => $DTO->manufacturer,
+            'purchase_date' => $DTO->purchase_date,
+            'employee_id' => $DTO->employee_id,
         ];
     }
 }
-
-
-

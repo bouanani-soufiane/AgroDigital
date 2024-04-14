@@ -12,6 +12,7 @@ class UpdateTraitementRequest extends FormRequest
             "name" => "required|string",
             "dateStart" => "required|string",
             "dateEnd" => "required|string",
+            "product_id" => "required",
         ];
     }
 }

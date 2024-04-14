@@ -21,7 +21,6 @@ readonly class TraitementDTO
     public static function fromRequest(StoreTraitementRequest | UpdateTraitementRequest $request)
     {
         $validatedData = $request->validated();
-        $user = JWTAuth::user();
 
         return new self(
             name: $validatedData["name"],
@@ -29,7 +28,10 @@ readonly class TraitementDTO
             dateEnd: $validatedData["dateEnd"],
             product_id: $validatedData["product_id"],
             // images: $validatedData["images"],
-            employee_id: $user ? $user->id : null ,
+            employee_id: JWTAuth::user()->id,
         );
     }
 }
+
+
+

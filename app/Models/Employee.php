@@ -16,4 +16,8 @@ class Employee extends User
     public function products(){
         return $this->hasMany(Product::class);
     }
+
+    public function materials(){
+        return $this->hasMany(Material::class);
+    }
 }

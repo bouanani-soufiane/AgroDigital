@@ -4,6 +4,7 @@ namespace App\DTO;
 
 use Tymon\JWTAuth\Facades\JWTAuth;
 use App\Http\Requests\StoreMaterialRequest;
+use App\Http\Requests\UpdateMaterialRequest;
 
 readonly class MaterialDTO
 {
@@ -21,7 +22,7 @@ readonly class MaterialDTO
     ) {
     }
 
-    public static function fromRequest(StoreMaterialRequest $request)
+    public static function fromRequest(StoreMaterialRequest | UpdateMaterialRequest $request)
     {
         $validatedData = $request->validated();
         return new self(

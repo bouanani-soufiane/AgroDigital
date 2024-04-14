@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('traitements', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('dateStart');
-            $table->string('dateEnd');
+            $table->date('dateStart');
+            $table->date('dateEnd');
             $table->foreignId("employee_id")->constrained("employees");
             $table->foreignId("product_id")->constrained("products");
             $table->timestamps();

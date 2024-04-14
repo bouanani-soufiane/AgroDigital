@@ -21,7 +21,7 @@ Route::prefix('v1')->group(function () {
 
 Route::group(['prefix' => 'v1'], function () {
     Route::apiResource('tasks', TaskController::class);
-    Route::apiResource('disease', DiseaseController::class);
+    Route::apiResource('diseases', DiseaseController::class);
     Route::apiResource('reports', ReportController::class);
     Route::apiResource('traitements', TraitementController::class);
     Route::apiResource('products', ProductController::class);

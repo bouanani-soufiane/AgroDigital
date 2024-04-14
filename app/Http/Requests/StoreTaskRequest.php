@@ -26,8 +26,5 @@ class StoreTaskRequest extends FormRequest
         ];
     }
 
-    public function createDTO()
-    {
-        return TaskDTO::fromRequest($this);
-    }
 }
+

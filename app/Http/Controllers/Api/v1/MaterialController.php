@@ -28,7 +28,7 @@ class MaterialController extends BaseApiController
     public function store(StoreMaterialRequest $request)
     {
         $DTO = MaterialDTO::fromRequest($request);
-        \Log::info('Received data: ' . json_encode($DTO));
+        // \Log::info('Received data: ' . json_encode($DTO));
         $material = $this->service->store($DTO);
         return $this->sendResponse(
             message: "Material created successfully",
@@ -42,7 +42,7 @@ class MaterialController extends BaseApiController
         return $this->sendResponse(
             message: "Material retrieved successfully",
             result: $this->service->show($material),
-            code: 201
+            code: 200
         );
     }
 
@@ -61,6 +61,6 @@ class MaterialController extends BaseApiController
     {
         $this->service->delete($material);
 
-        return $this->sendResponse(message: "Material deleted", result: true);
+        return $this->sendResponse(message: "Material deleted", result: true , code: 204);
     }
 }

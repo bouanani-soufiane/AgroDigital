@@ -3,6 +3,7 @@
 namespace App\DTO;
 
 use App\Http\Requests\StoreDiseaseRequest;
+use App\Http\Requests\UpdateDiseaseRequest;
 
 readonly class DiseaseDTO
 {
@@ -15,7 +16,7 @@ readonly class DiseaseDTO
     ) {
     }
 
-    public static function fromRequest(StoreDiseaseRequest $request)
+    public static function fromRequest(StoreDiseaseRequest | UpdateDiseaseRequest $request)
     {
         $validatedData = $request->validated();
         return new self(
