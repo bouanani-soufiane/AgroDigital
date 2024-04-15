@@ -12,7 +12,7 @@ class UpdateReportRequest extends FormRequest
             'subject' => 'required',
             'content' => 'required',
             'disease_id' => 'required',
-            'product_id' => 'required',
+            'product_id' => 'required|array',
             'task_id' => 'required',
         ];
     }

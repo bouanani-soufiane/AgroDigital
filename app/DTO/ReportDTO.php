@@ -11,7 +11,7 @@ readonly class ReportDTO
         public string $subject,
         public string $content,
         public int $disease_id,
-        public int $product_id,
+        public array $product_id,
         public int $task_id,
 
 

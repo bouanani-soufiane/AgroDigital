@@ -20,7 +20,7 @@ class ReportRepository  implements ReportRepositoryInterface
     {
         try {
             $report = Report::create($this->getArr($DTO));
-            $report->products()->attach($DTO->product_id);
+            $report->products()->sync($DTO->product_id);
             return $report;
         } catch (\Exception $e) {
             throw new \RuntimeException("Error creating Report: " . $e->getMessage());
@@ -39,7 +39,11 @@ class ReportRepository  implements ReportRepositoryInterface
     public function update(Report $report, ReportDTO $DTO)
     {
         try {
-            return $report->update($this->getArr($DTO));
+            $report->update($this->getArr($DTO));
+
+            $report->products()->sync($DTO->product_id);
+
+            return $report->refresh(); // Refresh the report model with updated data
         } catch (ModelNotFoundException $e) {
             throw new \RuntimeException("Report not found: " . $e->getMessage(), $e->getCode(), $e);
         } catch (UnauthorizedException $e) {
@@ -47,10 +51,13 @@ class ReportRepository  implements ReportRepositoryInterface
         }
     }
 
+
     public function delete(Report $report)
     {
         try {
-            return $report->delete();
+            $report->products()->detach();
+            $report->delete();
+            return true;
         } catch (ModelNotFoundException $e) {
             throw new \RuntimeException("Report not found: " . $e->getMessage(), $e->getCode(), $e);
         }

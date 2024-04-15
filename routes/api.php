@@ -9,6 +9,7 @@ use App\Http\Controllers\Api\v1\TraitementController;
 use App\Http\Controllers\Api\v1\Employee\UserController;
 use App\Http\Controllers\Api\v1\MaterialController;
 use App\Http\Controllers\Api\v1\ProductController;
+use App\Http\Controllers\Api\v1\ProgramController;
 
 Route::prefix('v1')->group(function () {
     Route::post('register', [UserController::class, 'store']);
@@ -27,5 +28,7 @@ Route::group(['prefix' => 'v1'], function () {
     Route::apiResource('products', ProductController::class);
     Route::apiResource('users', UserController::class);
     Route::apiResource('materials', MaterialController::class);
+    Route::apiResource('programs', ProgramController::class);
+
 
 });

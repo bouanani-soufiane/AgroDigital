@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Stage extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'stage_name',
+    ];
+    public function program()
+    {
+        return $this->belongsToMany(Program::class, 'attributes');
+    }
 }

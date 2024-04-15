@@ -1,5 +1,7 @@
 <?php
 
+namespace App\DTO;
+
 use App\Http\Requests\StoreProgramRequest;
 use App\Http\Requests\UpdateProgramRequest;
 
@@ -8,10 +10,8 @@ readonly class ProgramDTO
     public function __construct(
         public string $program_name,
         public string $stage_name,
-        public string $stage_duration,
-        public string $attribute_name,
-
-
+        public int $stage_duration,
+        public string $attribute_name
     ) {
     }
 
@@ -23,7 +23,6 @@ readonly class ProgramDTO
             stage_name: $validatedData["stage_name"],
             stage_duration: $validatedData["stage_duration"],
             attribute_name: $validatedData["attribute_name"],
-
         );
     }
 }
