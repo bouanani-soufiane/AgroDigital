@@ -13,6 +13,6 @@ class Stage extends Model
     ];
     public function program()
     {
-        return $this->belongsToMany(Program::class, 'attributes');
+        return $this->belongsToMany(Program::class, 'attributes')->withPivot('attribute_name');
     }
 }

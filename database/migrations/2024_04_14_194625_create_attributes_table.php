@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('attributes', function (Blueprint $table) {
             $table->id();
             $table->string('attribute_name');
-            $table->foreignId("program_id")->constrained("programs");
-            $table->foreignId("stage_id")->constrained("stages");
+            $table->foreignId("program_id")->constrained("programs")->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId("stage_id")->constrained("stages")->onDelete('cascade')->onUpdate('cascade');
 
             $table->timestamps();
         });

@@ -10,10 +10,9 @@ use App\Http\Controllers\Api\v1\BaseApiController;
 
 class UserController extends BaseApiController
 {
-    public function __construct(
-        public UserServiceInterface $service
-    )
+    public function __construct(public UserServiceInterface $service)
     {
+        
     }
 
     public function index()

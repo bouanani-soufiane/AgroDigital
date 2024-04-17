@@ -11,8 +11,8 @@ class UpdateProgramRequest extends FormRequest
         return [
             'program_name' => 'required',
             'stage_name' => 'required',
-            'stage_duration' => 'required',
             'attribute_name' => 'required',
+            'cultur_name' => 'required',
         ];
     }
 }

@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('stages', function (Blueprint $table) {
             $table->id();
             $table->string('stage_name');
-            $table->integer('stage_duration');
+            $table->integer('stage_duration')->nullable();
             $table->timestamps();
         });
     }

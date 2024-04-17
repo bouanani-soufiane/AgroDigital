@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Attribute extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'attribute_name',
+        'program_id',
+        'stage_id'
+    ];
 }

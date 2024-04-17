@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('programs', function (Blueprint $table) {
             $table->id();
             $table->string('program_name');
-            $table->foreignId("cultur_id")->constrained("culturs");
+            $table->foreignId("cultur_id")->constrained("culturs")->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

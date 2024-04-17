@@ -9,9 +9,9 @@ readonly class ProgramDTO
 {
     public function __construct(
         public string $program_name,
-        public string $stage_name,
-        public int $stage_duration,
-        public string $attribute_name
+        public string $cultur_name,
+        public array $stage_name,
+        public array $attribute_name
     ) {
     }
 
@@ -21,8 +21,8 @@ readonly class ProgramDTO
         return new self(
             program_name: $validatedData["program_name"],
             stage_name: $validatedData["stage_name"],
-            stage_duration: $validatedData["stage_duration"],
             attribute_name: $validatedData["attribute_name"],
+            cultur_name: $validatedData["cultur_name"],
         );
     }
 }

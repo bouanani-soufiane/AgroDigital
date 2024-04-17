@@ -48,6 +48,8 @@ class ProgramController extends BaseApiController
     public function update(UpdateProgramRequest $request, Program $Program)
     {
         $DTO = ProgramDTO::fromRequest($request);
+
+        // dd($DTO);
         $Program = $this->service->update($Program, $DTO);
         return $this->sendResponse(
             message: "Program updated successfully",
