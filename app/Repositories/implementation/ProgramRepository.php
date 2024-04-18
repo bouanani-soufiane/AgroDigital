@@ -15,7 +15,7 @@ class ProgramRepository  implements ProgramRepositoryInterface
 {
     public function all()
     {
-        return Program::all();
+        return Program::orderBy('id', 'asc')->get();
     }
 
 

@@ -26,12 +26,14 @@ class ProgramController extends BaseApiController
 
     public function store(StoreProgramRequest $request)
     {
+
         $DTO = ProgramDTO::fromRequest($request);
         $Program = $this->service->store($DTO);
+
         return $this->sendResponse(
             message: "Program created successfully",
             result: $Program,
-            code: 200
+            code: 201
         );
     }
 
@@ -56,7 +58,6 @@ class ProgramController extends BaseApiController
             code: 200
         );
     }
-
     public function destroy(Program $Program)
     {
         $this->service->delete($Program);

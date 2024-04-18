@@ -12,9 +12,12 @@ class Program extends Model
         'program_name',
         'cultur_id'
     ];
+    protected $with = ['stage'];
     public function stage()
     {
-        return $this->belongsToMany(Stage::class, 'attributes')->withPivot('attribute_name');
+        return $this->belongsToMany(Stage::class, 'attributes')
+        ->withPivot('id','attribute_name', 'attribute_value')
+        ->orderBy('attributes.id');
     }
     public function cultur()
     {
