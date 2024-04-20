@@ -4,6 +4,7 @@ namespace App\Repositories\interface;
 
 use App\DTO\ProgramDTO;
 use App\Models\Program;
+use App\DTO\FinishProgramDTO;
 
 
 interface ProgramRepositoryInterface
@@ -11,6 +12,8 @@ interface ProgramRepositoryInterface
     public function all();
 
     public function store(ProgramDTO $DTO);
+
+    public function finish(FinishProgramDTO $DTO);
 
     public function show(Program $Program);
 

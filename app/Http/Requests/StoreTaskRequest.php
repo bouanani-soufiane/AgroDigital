@@ -22,6 +22,7 @@ class StoreTaskRequest extends FormRequest
                 "required",
                 Rule::in(['Traitement', 'Surviance', 'Irrigation', 'Fertigation'])
             ],
+            "employee_id" => "required",
         ];
     }
 

@@ -7,6 +7,8 @@ use App\Models\Cultur;
 use App\DTO\ProgramDTO;
 use App\Models\Program;
 use App\Models\Attribute;
+use App\DTO\FinishProgramDTO;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\UnauthorizedException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use App\Repositories\interface\ProgramRepositoryInterface;
@@ -48,6 +50,24 @@ class ProgramRepository  implements ProgramRepositoryInterface
             }
         }
         return $program;
+    }
+
+    public function finish(FinishProgramDTO $DTO)
+    {
+        try {
+            foreach ($DTO->programData as $i => $programData) {
+                if ($programData['attribute'] != null) {
+                    DB::table('attributes')
+                        ->where('attribute_name', $programData['attribute'])
+                        ->where('program_id', $programData['programId'])
+                        ->where('stage_id', $programData['stageId'])
+                        ->update(['attribute_value' => $programData['value']]);
+                }
+            }
+            return true;
+        } catch (ModelNotFoundException $e) {
+            throw new \RuntimeException("cant add values: " . $e->getMessage(), $e->getCode(), $e);
+        }
     }
 
     public function show(Program $Program)
@@ -119,6 +139,3 @@ class ProgramRepository  implements ProgramRepositoryInterface
         }
     }
 }
-
-
-

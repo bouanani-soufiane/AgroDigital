@@ -30,5 +30,6 @@ Route::group(['prefix' => 'v1'], function () {
     Route::apiResource('materials', MaterialController::class);
     Route::apiResource('programs', ProgramController::class);
 
+    Route::post('finishprogram', [ProgramController::class , 'finish']);
 
 });

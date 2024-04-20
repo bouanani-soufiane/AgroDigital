@@ -18,6 +18,7 @@ class TaskRepository implements TaskRepositoryInterface
 
     public function store(TaskDTO $DTO): Task
     {
+
         try {
             $task = Task::create($this->getArr($DTO));
             return $task;
@@ -38,7 +39,8 @@ class TaskRepository implements TaskRepositoryInterface
     public function update(Task $task, TaskDTO $DTO)
     {
         try {
-            return $task->update($this->getArr($DTO));
+            $task->update($this->getArr($DTO));
+            return $task;
         } catch (ModelNotFoundException $e) {
             throw new \RuntimeException("Task not found: " . $e->getMessage(), $e->getCode(), $e);
         } catch (UnauthorizedException $e) {

@@ -12,7 +12,7 @@ class ProgramResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'program_name' => $this->name,
+            'program_name' => $this->program_name,
             'stage' => new StageResource($this->stage),
         ];
     }

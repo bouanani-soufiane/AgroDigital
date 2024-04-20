@@ -31,7 +31,7 @@ readonly class TaskDTO
             DateEnd: $validatedData["DateEnd"],
             Status: $validatedData["Status"],
             TypeTask: $validatedData["TypeTask"],
-            employee_id: JWTAuth::user()->id,
+            employee_id: $validatedData["employee_id"],
         );
     }
 }

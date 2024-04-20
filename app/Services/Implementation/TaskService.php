@@ -32,7 +32,7 @@ class TaskService implements TaskServiceInterface
     }
     public function update(Task $task, TaskDTO $DTO)
     {
-        return $this->repository->update($task, $DTO);
+        return new TaskResource($this->repository->update($task, $DTO));
     }
     public function delete(Task $task)
     {

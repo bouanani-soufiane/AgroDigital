@@ -4,6 +4,7 @@ namespace App\Services\Implementation;
 
 use App\DTO\ProgramDTO;
 use App\Models\Program;
+use App\DTO\FinishProgramDTO;
 use App\Http\Resources\ProgramResource;
 use App\Services\contract\ProgramServiceInterface;
 use App\Repositories\interface\ProgramRepositoryInterface;
@@ -23,7 +24,11 @@ class ProgramService implements ProgramServiceInterface
     {
         return new ProgramResource($this->repository->store($DTO));
     }
+    public function finish(FinishProgramDTO $DTO)
+    {
 
+        return $this->repository->finish($DTO);
+    }
     public function show(Program $Program)
     {
         return new ProgramResource($this->repository->show($Program));

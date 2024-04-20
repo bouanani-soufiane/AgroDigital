@@ -17,6 +17,7 @@ class UpdateTaskRequest extends FormRequest
             "Description" => "required|string",
             "DateStart" => "required|string",
             "DateEnd" => "required|string",
+            "employee_id" => "",
             "Status" => [
                 "required",
                 Rule::in(['Pending', 'Done', 'Cancelled'])
@@ -24,7 +25,7 @@ class UpdateTaskRequest extends FormRequest
             "TypeTask" => [
                 "required",
                 Rule::in(['Traitement', 'Surviance', 'Irrigation', 'Fertigation'])
-            ],        ];
+            ],
+        ];
     }
-
 }

@@ -49,8 +49,10 @@ class TaskController extends BaseApiController
     {
         $DTO = TaskDTO::fromRequest($request);
         $task = $this->service->update($task, $DTO);
+
         return $this->sendResponse(
             message: "task updated successfully",
+            result: $task,
             code: 201
         );
     }
