@@ -22,7 +22,13 @@ class TaskController extends BaseApiController
             result: $this->service->all()
         );
     }
-
+    public function EmployeeTask()
+    {
+        return $this->sendResponse(
+            message: "tasks list",
+            result: $this->service->EmployeeTask()
+        );
+    }
 
     public function store(StoreTaskRequest $request)
     {
@@ -57,6 +63,27 @@ class TaskController extends BaseApiController
         );
     }
 
+    public function markAsDone(Task $task)
+    {
+        $task = $this->service->markAsDone($task);
+
+        return $this->sendResponse(
+            message: "task marked as done",
+            result: $task->id,
+            code: 200
+        );
+    }
+
+    public function markAsCancelled(Task $task)
+    {
+        $task = $this->service->markAsCancelled($task);
+
+        return $this->sendResponse(
+            message: "task marked as Cancelled",
+            result: $task->id,
+            code: 200
+        );
+    }
     public function destroy(Task $task)
     {
         $this->service->delete($task);

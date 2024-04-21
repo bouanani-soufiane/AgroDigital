@@ -8,12 +8,21 @@ use App\DTO\TaskDTO;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Validation\UnauthorizedException;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 class TaskRepository implements TaskRepositoryInterface
 {
     public function all(): Collection
     {
         return Task::all();
+    }
+    public function EmployeeTask(): Collection
+    {
+        try {
+            return Task::where('employee_id', JWTAuth::user()->id)->get();
+        } catch (\Exception $e) {
+            throw new \RuntimeException("Error showing task: " . $e->getMessage());
+        }
     }
 
     public function store(TaskDTO $DTO): Task
@@ -40,6 +49,29 @@ class TaskRepository implements TaskRepositoryInterface
     {
         try {
             $task->update($this->getArr($DTO));
+            return $task;
+        } catch (ModelNotFoundException $e) {
+            throw new \RuntimeException("Task not found: " . $e->getMessage(), $e->getCode(), $e);
+        } catch (UnauthorizedException $e) {
+            throw new \RuntimeException("Validation error: " . $e->getMessage(), $e->getCode(), $e);
+        }
+    }
+
+    public function markAsDone(Task $task)
+    {
+        try {
+            $task->update(['Status' => 'Done']);
+            return $task;
+        } catch (ModelNotFoundException $e) {
+            throw new \RuntimeException("Task not found: " . $e->getMessage(), $e->getCode(), $e);
+        } catch (UnauthorizedException $e) {
+            throw new \RuntimeException("Validation error: " . $e->getMessage(), $e->getCode(), $e);
+        }
+    }
+    public function markAsCancelled(Task $task)
+    {
+        try {
+            $task->update(['Status' => 'Cancelled']);
             return $task;
         } catch (ModelNotFoundException $e) {
             throw new \RuntimeException("Task not found: " . $e->getMessage(), $e->getCode(), $e);

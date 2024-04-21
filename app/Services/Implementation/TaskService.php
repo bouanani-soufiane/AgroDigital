@@ -19,7 +19,10 @@ class TaskService implements TaskServiceInterface
         return TaskResource::collection($this->repository->all());
     }
 
-
+    public function EmployeeTask()
+    {
+        return TaskResource::collection($this->repository->EmployeeTask());
+    }
 
     public function store(TaskDTO $DTO)
     {
@@ -34,6 +37,15 @@ class TaskService implements TaskServiceInterface
     {
         return new TaskResource($this->repository->update($task, $DTO));
     }
+    public function markAsDone(Task $task)
+    {
+        return $this->repository->markAsDone($task);
+    }
+    public function markAsCancelled(Task $task)
+    {
+        return $this->repository->markAsCancelled($task);
+    }
+
     public function delete(Task $task)
     {
         return $this->repository->delete($task);

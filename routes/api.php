@@ -30,6 +30,10 @@ Route::group(['prefix' => 'v1'], function () {
     Route::apiResource('materials', MaterialController::class);
     Route::apiResource('programs', ProgramController::class);
 
-    Route::post('finishprogram', [ProgramController::class , 'finish']);
+    Route::post('finishprogram', [ProgramController::class, 'finish']);
+    Route::get('employeeTask', [TaskController::class, 'EmployeeTask']);
+    Route::patch('markAsDone/{task}', [TaskController::class, 'markAsDone']);
+    Route::patch('markAsCancelled/{task}', [TaskController::class, 'markAsCancelled']);
+
 
 });
