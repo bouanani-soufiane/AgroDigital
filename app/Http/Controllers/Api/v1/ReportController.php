@@ -8,10 +8,11 @@ use App\Http\Requests\StoreReportRequest;
 use App\Http\Requests\UpdateReportRequest;
 use App\Services\contract\ReportServiceInterface;
 use App\Http\Controllers\Api\v1\BaseApiController;
+use App\Services\contract\UploadImageInterface;
 
 class ReportController extends BaseApiController
 {
-    public function __construct(public ReportServiceInterface $service)
+    public function __construct(public ReportServiceInterface $service, public UploadImageInterface $uploadImage)
     {
     }
     public function index()
@@ -25,12 +26,13 @@ class ReportController extends BaseApiController
     {
         $DTO = ReportDTO::fromRequest($request);
         $report = $this->service->store($DTO);
+
         return response()->json($report, 201);
     }
 
     public function show(Report $report)
     {
-        $report->load('products');
+        $report;
 
         return response()->json($report, 200);
     }

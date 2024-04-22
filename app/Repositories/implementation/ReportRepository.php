@@ -13,14 +13,14 @@ class ReportRepository  implements ReportRepositoryInterface
     public function all()
     {
 
-        return Report::with('products')->get();
+        return Report::with('disease', 'task', 'image')->get();
     }
 
     public function store(ReportDTO $DTO)
     {
         try {
             $report = Report::create($this->getArr($DTO));
-            $report->products()->sync($DTO->product_id);
+
             return $report;
         } catch (\Exception $e) {
             throw new \RuntimeException("Error creating Report: " . $e->getMessage());
@@ -41,7 +41,6 @@ class ReportRepository  implements ReportRepositoryInterface
         try {
             $report->update($this->getArr($DTO));
 
-            $report->products()->sync($DTO->product_id);
 
             return $report->refresh(); // Refresh the report model with updated data
         } catch (ModelNotFoundException $e) {
@@ -55,7 +54,6 @@ class ReportRepository  implements ReportRepositoryInterface
     public function delete(Report $report)
     {
         try {
-            $report->products()->detach();
             $report->delete();
             return true;
         } catch (ModelNotFoundException $e) {

@@ -5,6 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use App\Repositories\implementation\TaskRepository;
 use App\Repositories\implementation\UserRepository;
+use App\Repositories\implementation\ImageRepository;
 use App\Repositories\implementation\ReportRepository;
 use App\Repositories\implementation\DiseaseRepository;
 use App\Repositories\implementation\ProductRepository;
@@ -12,6 +13,7 @@ use App\Repositories\implementation\ProgramRepository;
 use App\Repositories\implementation\MaterialRepository;
 use App\Repositories\interface\TaskRepositoryInterface;
 use App\Repositories\interface\UserRepositoryInterface;
+use App\Repositories\interface\ImageRepositoryInterface;
 use App\Repositories\implementation\TraitementRepository;
 use App\Repositories\interface\ReportRepositoryInterface;
 use App\Repositories\interface\DiseaseRepositoryInterface;
@@ -27,12 +29,8 @@ class RepositoryServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
     }
 
-    /**
-     * Bootstrap services.
-     */
     public function boot(): void
     {
         app()->bind(TaskRepositoryInterface::class, TaskRepository::class);
@@ -43,6 +41,8 @@ class RepositoryServiceProvider extends ServiceProvider
         app()->bind(UserRepositoryInterface::class, UserRepository::class);
         app()->bind(MaterialRepositoryInterface::class, MaterialRepository::class);
         app()->bind(ProgramRepositoryInterface::class, ProgramRepository::class);
+        app()->bind(ImageRepositoryInterface::class, ImageRepository::class);
+
 
     }
 }

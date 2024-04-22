@@ -14,7 +14,12 @@ class Report extends Model
         'disease_id',
         'task_id',
     ];
-    protected $with = ['products'];
+
+    public function image()
+    {
+        return $this->morphOne(Image::class, "imageable");
+    }
+
     public function task(){
         return $this->belongsTo(Task::class);
     }
@@ -22,8 +27,5 @@ class Report extends Model
     {
         return $this->belongsTo(Disease::class);
     }
-    public function products()
-    {
-        return $this->belongsToMany(Product::class);
-    }
+
 }

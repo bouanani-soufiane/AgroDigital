@@ -14,8 +14,9 @@ class ReportResource extends JsonResource
             'subject' => $this->subject,
             'content' => $this->content,
             'disease' => new DiseaseResource($this->disease),
-            'product' => new ProductResource($this->product),
             'task' => new TaskResource($this->task),
+            'image' => (new ImageResource($this->image)),
+
 
 
         ];
