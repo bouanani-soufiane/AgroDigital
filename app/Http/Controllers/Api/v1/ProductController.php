@@ -51,6 +51,7 @@ class ProductController extends BaseApiController
         $product = $this->service->update($product, $DTO);
         return $this->sendResponse(
             message: "product updated successfully",
+            result: $product,
             code: 200
         );
     }

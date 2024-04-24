@@ -17,6 +17,8 @@ class TaskResource extends JsonResource
             'Description' => $this->Description,
             'DateStart' => $this->DateStart,
             'DateEnd' => $this->DateEnd,
+            'created_at' => $this->created_at,
+
             'Status' => TaskStatus::from($this->Status)->value,
             'TypeTask' => TaskType::from($this->TypeTask)->value,
             'employee' => new EmployeeResource($this->employee),

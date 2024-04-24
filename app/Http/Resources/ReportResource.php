@@ -13,12 +13,11 @@ class ReportResource extends JsonResource
             "id" => $this->id,
             'subject' => $this->subject,
             'content' => $this->content,
+            'updated_at' => $this->updated_at,
             'disease' => new DiseaseResource($this->disease),
             'task' => new TaskResource($this->task),
             'image' => (new ImageResource($this->image)),
-
-
-
+            'products' => new ProductResource($this->products)
         ];
     }
 }

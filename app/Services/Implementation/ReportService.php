@@ -4,6 +4,8 @@ namespace App\Services\Implementation;
 
 use App\DTO\ReportDTO;
 use App\Models\Report;
+use App\DTO\SurvianceDTO;
+use App\DTO\ReportSimpleDTO;
 use App\Http\Resources\ReportResource;
 use App\Services\contract\ImageServiceInterface;
 use App\Services\contract\ReportServiceInterface;
@@ -18,10 +20,10 @@ class ReportService implements ReportServiceInterface
     }
     public function all()
     {
-        return ReportResource::collection($this->repository->all());
+        return new ReportResource($this->repository->all());
     }
 
-    public function store(ReportDTO $DTO)
+    public function store(ReportDTO | ReportSimpleDTO | SurvianceDTO $DTO)
     {
         $report = $this->repository->store($DTO);
         $this->imageService->create($report, $DTO->image);

@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\Enums\ProductType;
 
 return new class extends Migration
 {
@@ -15,8 +16,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->integer('quantity');
-            $table->integer('stock');
-            $table->string('type');
+            $table->enum('type', ProductType::getValues());
             $table->foreignId("employee_id")->constrained("employees");
             $table->timestamps();
         });

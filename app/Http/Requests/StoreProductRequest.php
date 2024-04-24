@@ -1,8 +1,8 @@
 <?php
-
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StoreProductRequest extends FormRequest
 {
@@ -11,9 +11,11 @@ class StoreProductRequest extends FormRequest
         return [
             'name' => 'required',
             'quantity' => 'required',
-            'stock' => 'required',
-            'type' => 'required',
+            'type' =>  [
+                "required",
+                Rule::in(['Herbicide', 'Insecticide', 'Fungicide', 'Nematicide'])
+            ],
+            'image' => 'required|image'
         ];
     }
 }
-

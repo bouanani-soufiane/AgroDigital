@@ -15,17 +15,23 @@ class Report extends Model
         'task_id',
     ];
 
+    protected $with = ['products'];
+
     public function image()
     {
         return $this->morphOne(Image::class, "imageable");
     }
 
-    public function task(){
+    public function task()
+    {
         return $this->belongsTo(Task::class);
     }
     public function disease()
     {
         return $this->belongsTo(Disease::class);
     }
-
+    public function products()
+    {
+        return $this->belongsToMany(Product::class);
+    }
 }

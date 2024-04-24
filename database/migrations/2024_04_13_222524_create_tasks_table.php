@@ -1,8 +1,9 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
+use App\Enums\TaskType;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 return new class extends Migration
 {
@@ -18,7 +19,8 @@ return new class extends Migration
             $table->string('DateStart');
             $table->string('DateEnd');
             $table->string('Status')->default(\App\Enums\TaskStatus::PENDING->value);
-            $table->string('TypeTask')->default(\App\Enums\TaskType::TRAITEMENT->value);
+
+            $table->enum('TypeTask', TaskType::getValues())->nullable();
             $table->foreignId("employee_id")->constrained("employees");
             $table->timestamps();
         });

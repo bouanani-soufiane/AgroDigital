@@ -11,7 +11,9 @@ class StoreReportRequest extends FormRequest
         return [
             'subject' => 'required',
             'content' => 'required',
-            'disease_id' => 'required',
+            'disease_id' => '',
+            'product_id.*' => '',
+            'product_id' => 'nullable|array',
             'task_id' => 'required',
             'image' => 'required|image'
 

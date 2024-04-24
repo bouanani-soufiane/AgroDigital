@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
+use App\Enums\TaskType;
 
 class StoreTaskRequest extends FormRequest
 {
@@ -19,8 +20,9 @@ class StoreTaskRequest extends FormRequest
                 Rule::in(['Pending', 'Done', 'Cancelled'])
             ],
             "TypeTask" => [
-                "required",
-                Rule::in(['Traitement', 'Surviance', 'Irrigation', 'Fertigation'])
+                "sometimes",
+                "nullable",
+                Rule::in(TaskType::cases()),
             ],
             "employee_id" => "required",
         ];

@@ -97,7 +97,7 @@ class TaskRepository implements TaskRepositoryInterface
             'DateStart'  => $DTO->DateStart,
             'DateEnd'  => $DTO->DateEnd,
             'Status'  => $DTO->Status,
-            'TypeTask'  => $DTO->TypeTask,
+            'TypeTask' => $DTO->TypeTask,
             "employee_id" => $DTO->employee_id,
 
         ];

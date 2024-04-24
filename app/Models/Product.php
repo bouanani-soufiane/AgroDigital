@@ -11,13 +11,20 @@ class Product extends Model
     protected $fillable = [
         'name',
         'quantity',
-        'stock',
         'type',
         'employee_id',
     ];
-    public function employee(){
+    public function employee()
+    {
         return $this->belongsTo(Employee::class);
     }
-  
+    public function image()
+    {
+        return $this->morphOne(Image::class, "imageable");
+    }
 
+    public function reports()
+    {
+        return $this->belongsToMany(Report::class);
+    }
 }

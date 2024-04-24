@@ -36,8 +36,10 @@ class ProductRepository  implements ProductRepositoryInterface
 
     public function update(Product $product, ProductDTO $DTO)
     {
+
         try {
-            return $product->update($this->getArr($DTO));
+            $product->update($this->getArr($DTO));
+            return $product;
         } catch (ModelNotFoundException $e) {
             throw new \RuntimeException("Product not found: " . $e->getMessage(), $e->getCode(), $e);
         } catch (UnauthorizedException $e) {
@@ -58,7 +60,6 @@ class ProductRepository  implements ProductRepositoryInterface
         return [
             "name" => $DTO->name,
             "quantity" => $DTO->quantity,
-            "stock" => $DTO->stock,
             "type" => $DTO->type,
             "employee_id" => $DTO->employee_id
         ];

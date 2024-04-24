@@ -2,7 +2,6 @@
 
 namespace App\DTO;
 
-use Tymon\JWTAuth\Facades\JWTAuth;
 use App\Http\Requests\StoreTaskRequest;
 use App\Http\Requests\UpdateTaskRequest;
 
@@ -14,7 +13,7 @@ readonly class TaskDTO
         public string $DateStart,
         public string $DateEnd,
         public string $Status,
-        public string $TypeTask,
+        public ?string $TypeTask,
         public int $employee_id,
 
     ) {
@@ -30,7 +29,7 @@ readonly class TaskDTO
             DateStart: $validatedData["DateStart"],
             DateEnd: $validatedData["DateEnd"],
             Status: $validatedData["Status"],
-            TypeTask: $validatedData["TypeTask"],
+            TypeTask: $validatedData["TypeTask"] ?? null,
             employee_id: $validatedData["employee_id"],
         );
     }
