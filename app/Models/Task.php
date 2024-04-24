@@ -18,6 +18,7 @@ class Task extends Model
         'TypeTask',
         'employee_id',
     ];
+    protected $with = ['employee']; 
     public function employee()
     {
         return $this->belongsTo(Employee::class);

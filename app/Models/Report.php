@@ -15,7 +15,7 @@ class Report extends Model
         'task_id',
     ];
 
-    protected $with = ['products'];
+    protected $with = ['products','image', 'disease','task'];
 
     public function image()
     {

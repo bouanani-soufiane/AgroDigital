@@ -20,7 +20,7 @@ class ReportService implements ReportServiceInterface
     }
     public function all()
     {
-        return new ReportResource($this->repository->all());
+        return Report::all();
     }
 
     public function store(ReportDTO | ReportSimpleDTO | SurvianceDTO $DTO)

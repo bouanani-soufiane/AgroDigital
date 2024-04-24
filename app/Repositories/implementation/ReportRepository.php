@@ -14,7 +14,8 @@ class ReportRepository  implements ReportRepositoryInterface
 {
     public function all()
     {
-        $test = Report::with('disease', 'task', 'image','products')->orderBy('updated_at', 'desc')->get();
+
+        return Report::all();
     }
 
     public function store(ReportDTO | ReportSimpleDTO | SurvianceDTO $DTO)

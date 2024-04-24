@@ -19,8 +19,10 @@ class ReportController extends BaseApiController
     }
     public function index()
     {
-        $reports = $this->service->all();
-        return response()->json($reports, 200);
+        return $this->sendResponse(
+            message: "reports list",
+            result: $this->service->all()
+        );
     }
 
 
@@ -35,14 +37,21 @@ class ReportController extends BaseApiController
         }
         $report = $this->service->store($DTO);
 
-        return response()->json($report, 201);
+        return $this->sendResponse(
+            message: "report created successfully",
+            result: $report,
+            code: 200
+        );
     }
 
     public function show(Report $report)
     {
-        $report;
-
-        return response()->json($report, 200);
+        // dd($report);
+        return $this->sendResponse(
+            message: "report retrieved successfully",
+            result: $this->service->show($report),
+            code: 200
+        );
     }
 
 

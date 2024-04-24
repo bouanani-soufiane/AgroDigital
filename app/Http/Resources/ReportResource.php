@@ -17,7 +17,7 @@ class ReportResource extends JsonResource
             'disease' => new DiseaseResource($this->disease),
             'task' => new TaskResource($this->task),
             'image' => (new ImageResource($this->image)),
-            'products' => new ProductResource($this->products)
+            'products' => ProductResource::collection($this->products)
         ];
     }
 }
