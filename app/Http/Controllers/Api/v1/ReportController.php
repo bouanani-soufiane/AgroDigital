@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\v1;
 
 use App\DTO\ReportDTO;
+use App\DTO\ReportMagazinierDTO;
 use App\DTO\ReportSimpleDTO;
 use App\DTO\SurvianceDTO;
 use App\Models\Report;
@@ -28,7 +29,9 @@ class ReportController extends BaseApiController
 
     public function store(StoreReportRequest $request)
     {
-        if (!$request->disease_id) {
+        if (!$request->disease_id && !$request->product_id) {
+            $DTO = ReportMagazinierDTO::fromRequest($request);
+        } elseif (!$request->disease_id) {
             $DTO = ReportSimpleDTO::fromRequest($request);
         } elseif ($request->disease_id && !$request->product_id) {
             $DTO = SurvianceDTO::fromRequest($request);

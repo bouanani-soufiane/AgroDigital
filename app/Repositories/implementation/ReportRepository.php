@@ -4,8 +4,9 @@ namespace App\Repositories\implementation;
 
 use App\DTO\ReportDTO;
 use App\Models\Report;
-use App\DTO\ReportSimpleDTO;
 use App\DTO\SurvianceDTO;
+use App\DTO\ReportSimpleDTO;
+use App\DTO\ReportMagazinierDTO;
 use Illuminate\Validation\UnauthorizedException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use App\Repositories\interface\ReportRepositoryInterface;
@@ -18,10 +19,17 @@ class ReportRepository  implements ReportRepositoryInterface
         return Report::all();
     }
 
-    public function store(ReportDTO | ReportSimpleDTO | SurvianceDTO $DTO)
+    public function store(ReportDTO | ReportSimpleDTO | SurvianceDTO |ReportMagazinierDTO $DTO)
     {
         try {
-            if (!property_exists($DTO, 'disease_id')) {
+            if (!property_exists($DTO, 'disease_id') && !property_exists($DTO, 'product_id')) {
+                $report = Report::create([
+                    "subject" => $DTO->subject,
+                    "content" => $DTO->content,
+                    "task_id" => $DTO->task_id,
+                ]);
+            }
+            elseif (!property_exists($DTO, 'disease_id')) {
                 $report = Report::create([
                     "subject" => $DTO->subject,
                     "content" => $DTO->content,

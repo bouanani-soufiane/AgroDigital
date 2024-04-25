@@ -6,6 +6,7 @@ use App\DTO\ReportDTO;
 use App\Models\Report;
 use App\DTO\SurvianceDTO;
 use App\DTO\ReportSimpleDTO;
+use App\DTO\ReportMagazinierDTO;
 use App\Http\Resources\ReportResource;
 use App\Services\contract\ImageServiceInterface;
 use App\Services\contract\ReportServiceInterface;
@@ -23,7 +24,7 @@ class ReportService implements ReportServiceInterface
         return Report::all();
     }
 
-    public function store(ReportDTO | ReportSimpleDTO | SurvianceDTO $DTO)
+    public function store(ReportDTO | ReportSimpleDTO | SurvianceDTO | ReportMagazinierDTO $DTO)
     {
         $report = $this->repository->store($DTO);
         $this->imageService->create($report, $DTO->image);
