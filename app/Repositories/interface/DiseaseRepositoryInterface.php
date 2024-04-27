@@ -8,7 +8,7 @@ use App\Models\Disease;
 interface DiseaseRepositoryInterface
 {
     public function all();
-
+    public function statistics();
     public function store(DiseaseDTO $DTO);
 
     public function show(Disease $disease);

@@ -2,11 +2,12 @@
 
 namespace App\Repositories\implementation;
 
-use App\Models\Disease;
-use App\Repositories\interface\DiseaseRepositoryInterface;
 use App\DTO\DiseaseDTO;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
+use App\Models\Disease;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\UnauthorizedException;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use App\Repositories\interface\DiseaseRepositoryInterface;
 
 class DiseaseRepository  implements DiseaseRepositoryInterface
 {
@@ -14,6 +15,20 @@ class DiseaseRepository  implements DiseaseRepositoryInterface
     {
         return Disease::all();
     }
+
+
+
+    public function statistics()
+    {
+        $results = DB::table('diseases')
+        ->select(DB::raw('EXTRACT(MONTH FROM updated_at) AS month'), DB::raw('COUNT(*) as count'))
+        ->groupBy(DB::raw('EXTRACT(MONTH FROM updated_at)'))
+        ->orderBy(DB::raw('EXTRACT(MONTH FROM updated_at)'))
+        ->get();
+
+        return $results;
+    }
+
 
     public function store(DiseaseDTO $DTO)
     {

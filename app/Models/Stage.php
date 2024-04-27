@@ -10,6 +10,7 @@ class Stage extends Model
     use HasFactory;
     protected $fillable = [
         'stage_name',
+        'stage_duration'
     ];
     public function program()
     {

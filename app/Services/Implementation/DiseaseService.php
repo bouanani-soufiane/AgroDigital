@@ -18,6 +18,10 @@ class DiseaseService implements DiseaseServiceInterface
     {
         return DiseaseResource::collection($this->repository->all());
     }
+    public function statistics()
+    {
+        return $this->repository->statistics();
+    }
 
     public function store(DiseaseDTO $DTO)
     {

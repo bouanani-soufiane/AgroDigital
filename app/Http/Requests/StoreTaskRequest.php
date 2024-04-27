@@ -2,9 +2,10 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 use App\Enums\TaskType;
+use Illuminate\Validation\Rule;
+use App\Rules\GreaterThanCurrentDate;
+use Illuminate\Foundation\Http\FormRequest;
 
 class StoreTaskRequest extends FormRequest
 {
@@ -13,8 +14,8 @@ class StoreTaskRequest extends FormRequest
         return [
             "name" => "required|string",
             "Description" => "required|string",
-            "DateStart" => "required|string",
-            "DateEnd" => "required|string",
+            "DateStart" => ['required', 'date', new GreaterThanCurrentDate],
+            "DateEnd" => ['required', 'date', new GreaterThanCurrentDate],
             "Status" => [
                 "required",
                 Rule::in(['Pending', 'Done', 'Cancelled'])

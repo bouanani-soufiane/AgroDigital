@@ -11,6 +11,7 @@ class StoreProgramRequest extends FormRequest
         return [
             'program_name' => 'required',
             'stage_name' => 'required',
+            'stage_duration' => 'required',
             'attribute_name' => 'required | array',
             'attribute_value' => '',
             'cultur_name' => 'required',

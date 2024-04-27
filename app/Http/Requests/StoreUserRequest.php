@@ -12,7 +12,7 @@ class StoreUserRequest extends FormRequest
         return [
             "name" => "required|string",
             "email" => "required|email|unique:employees",
-            "password" => "required",
+            "password" => "required|min:8",
             "role" => "required"
         ];
     }

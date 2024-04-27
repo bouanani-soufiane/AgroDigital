@@ -25,6 +25,19 @@ class DiseaseController extends BaseApiController
         );
     }
 
+
+    public function statistics()
+    {
+        $disease = $this->service->statistics();
+        return $this->sendResponse(
+            message: "disease statistics !",
+            result: $disease,
+            code: 200
+        );
+    }
+
+
+
     public function store(StoreDiseaseRequest $request)
     {
         $DTO = DiseaseDTO::fromRequest($request);

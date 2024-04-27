@@ -31,11 +31,13 @@ class ProgramRepository  implements ProgramRepositoryInterface
             "program_name" => $DTO->program_name,
             "cultur_id" => $cultur->id,
         ]);
+
         $stage_ids = [];
-        foreach ($DTO->stage_name as $stageName) {
+        foreach ($DTO->stage_name as $index => $stageName) {
 
             $stage = Stage::create([
                 'stage_name' => $stageName,
+                'stage_duration' => $DTO->stage_duration[$index]
             ]);
             $stage_ids[] = $stage->id;
         }

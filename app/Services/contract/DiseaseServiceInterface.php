@@ -8,6 +8,8 @@ use App\Models\Disease;
 interface DiseaseServiceInterface
 {
     public function all();
+    public function statistics();
+
     public function store(DiseaseDTO $DTO);
     public function show(Disease $disease);
     public function update(Disease $disease, DiseaseDTO $DTO);
