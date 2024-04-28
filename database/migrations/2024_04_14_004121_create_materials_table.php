@@ -15,7 +15,7 @@ class CreateMaterialsTable extends Migration
             $table->string('type');
             $table->string('manufacturer');
             $table->date('purchase_date');
-            $table->foreignId("employee_id")->constrained("employees");
+            $table->foreignId("employee_id")->constrained("employees")->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

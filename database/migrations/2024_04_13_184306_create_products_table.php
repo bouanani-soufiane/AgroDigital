@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('name');
             $table->integer('quantity');
             $table->enum('type', ProductType::getValues());
-            $table->foreignId("employee_id")->constrained("employees");
+            $table->foreignId("employee_id")->constrained("employees")->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

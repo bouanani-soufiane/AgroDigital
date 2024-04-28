@@ -13,7 +13,7 @@ class TraitementRepository implements TraitementRepositoryInterface
 {
     public function all(): Collection
     {
-        return Traitement::all();
+        return Traitement::orderBy('created_at', 'desc')->get();
     }
 
     public function store(TraitementDTO $DTO): Traitement

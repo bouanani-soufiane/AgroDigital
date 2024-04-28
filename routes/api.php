@@ -19,8 +19,6 @@ Route::prefix('v1')->group(function () {
     Route::post('logout', [AuthController::class, 'logout']);
 });
 
-
-
 Route::group(['prefix' => 'v1'], function () {
     Route::apiResource('tasks', TaskController::class);
     Route::apiResource('diseases', DiseaseController::class);

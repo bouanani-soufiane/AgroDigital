@@ -14,7 +14,7 @@ class TaskRepository implements TaskRepositoryInterface
 {
     public function all(): Collection
     {
-        return Task::all();
+        return Task::orderBy('created_at', 'desc')->get();
     }
     public function EmployeeTask(): Collection
     {

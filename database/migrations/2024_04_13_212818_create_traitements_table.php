@@ -16,8 +16,8 @@ return new class extends Migration
             $table->string('name');
             $table->date('dateStart');
             $table->date('dateEnd');
-            $table->foreignId("employee_id")->constrained("employees");
-            $table->foreignId("product_id")->constrained("products");
+            $table->foreignId("employee_id")->constrained("employees")->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId("product_id")->constrained("products")->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

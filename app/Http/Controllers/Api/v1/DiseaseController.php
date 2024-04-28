@@ -8,9 +8,11 @@ use App\Http\Requests\StoreDiseaseRequest;
 use App\Http\Requests\UpdateDiseaseRequest;
 use App\Http\Controllers\Api\v1\BaseApiController;
 use App\Services\contract\DiseaseServiceInterface;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class DiseaseController extends BaseApiController
 {
+    use AuthorizesRequests;
 
     public function __construct(public DiseaseServiceInterface $service)
     {
@@ -72,6 +74,7 @@ class DiseaseController extends BaseApiController
 
     public function destroy(Disease $disease)
     {
+        $this->authorize("delete", $disease);
         $this->service->delete($disease);
 
         return $this->sendResponse(message: "disease deleted", result: true);

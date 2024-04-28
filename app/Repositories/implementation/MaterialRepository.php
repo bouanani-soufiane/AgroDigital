@@ -12,7 +12,7 @@ class MaterialRepository  implements MaterialRepositoryInterface
 {
     public function all()
     {
-        return Material::all();
+        return Material::orderBy('created_at', 'desc')->with('employee')->get();
     }
 
     public function store(MaterialDTO $DTO)

@@ -14,7 +14,7 @@ class UserRepository  implements UserRepositoryInterface
 {
     public function all()
     {
-        return User::where('role', '!=', 'Gerant')->get();
+        return User::where('role', '!=', 'Gerant')->orderBy('created_at', 'desc')->get();
     }
 
     public function store(UserDTO $DTO)

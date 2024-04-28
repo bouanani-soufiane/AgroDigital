@@ -16,7 +16,7 @@ class ReportRepository  implements ReportRepositoryInterface
     public function all()
     {
 
-        return Report::all();
+        return Report::orderBy('created_at', 'desc')->get();
     }
 
     public function store(ReportDTO | ReportSimpleDTO | SurvianceDTO |ReportMagazinierDTO $DTO)

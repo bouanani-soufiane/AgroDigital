@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('subject');
             $table->text('content');
-            $table->foreignId("disease_id")->nullable()->constrained("diseases");
-            $table->foreignId("task_id")->constrained("tasks");
+            $table->foreignId("disease_id")->nullable()->constrained("diseases")->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId("task_id")->constrained("tasks")->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

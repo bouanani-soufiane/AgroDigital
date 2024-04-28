@@ -12,7 +12,7 @@ class ProductRepository  implements ProductRepositoryInterface
 {
     public function all()
     {
-        return Product::all();
+        return Product::orderBy('updated_at', 'desc')->with('employee' , 'image')->get();
     }
 
     public function store(ProductDTO $DTO)

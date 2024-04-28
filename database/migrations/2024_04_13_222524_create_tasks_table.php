@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('Status')->default(\App\Enums\TaskStatus::PENDING->value);
 
             $table->enum('TypeTask', TaskType::getValues())->nullable();
-            $table->foreignId("employee_id")->constrained("employees");
+            $table->foreignId("employee_id")->constrained("employees")->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

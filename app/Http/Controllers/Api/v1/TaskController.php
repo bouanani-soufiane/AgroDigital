@@ -8,9 +8,12 @@ use App\Http\Requests\StoreTaskRequest;
 use App\Http\Requests\UpdateTaskRequest;
 use App\Services\contract\TaskServiceInterface;
 use App\Http\Controllers\Api\v1\BaseApiController;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class TaskController extends BaseApiController
 {
+    use AuthorizesRequests;
+
     public function __construct(public TaskServiceInterface $service)
     {
     }
@@ -86,6 +89,8 @@ class TaskController extends BaseApiController
     }
     public function destroy(Task $task)
     {
+        $this->authorize("delete", $task);
+
         $this->service->delete($task);
 
         return $this->sendResponse(message: "Task deleted", result: true);

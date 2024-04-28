@@ -13,7 +13,7 @@ class DiseaseRepository  implements DiseaseRepositoryInterface
 {
     public function all()
     {
-        return Disease::all();
+        return Disease::orderBy('created_at', 'desc')->get();
     }
 
 
