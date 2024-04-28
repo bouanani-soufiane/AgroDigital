@@ -39,6 +39,4 @@ Route::group(['prefix' => 'v1'], function () {
     Route::patch('markAsCancelled/{task}', [TaskController::class, 'markAsCancelled']);
     Route::get('statistics', [statisticsController::class, 'index']);
 
-
-
 });

@@ -14,15 +14,15 @@ class DatabaseSeeder extends Seeder
 
         User::factory()->create([
             'name' => 'Gerant',
-            'email' => 'Gerant@agrodigital.com',
+            'email' => 'g@g.com',
             'password' => bcrypt('12345678'),
             'role' => 'Gerant',
         ]);
 
         Disease::factory(60)->create([
-            'name' => '15',
-            'description' => 'ds',
-            'type' => 'dssd',
+            'name' => 'maladie',
+            'description' => 'lorem ipsum dolor sit amet, consectetur adip',
+            'type' => 'abiotique',
         ]);
     }
 }
